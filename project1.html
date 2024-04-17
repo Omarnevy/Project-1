@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors</title>
+</head>
+<body>
+    <h1>Rock Paper Scissors Game</h1>
+    <script>
+        let wins = 0;
+        let losses = 0;
+        let ties = 0;
+
+        const rounds = parseInt(prompt("How many rounds do you want to play?"));
+
+        for (let i = 0; i < rounds; i++) {
+            const userChoice = prompt("Enter 'r' for Rock, 'p' for Paper, or 's' for Scissors").toLowerCase();
+            const computerChoice = Math.floor(Math.random() * 3); // 0 for Rock, 1 for Paper, 2 for Scissors
+
+            let result = "";
+
+            switch (userChoice) {
+                case 'r':
+                    result = computerChoice === 0 ? "tie" : computerChoice === 1 ? "lose" : "win";
+                    break;
+                case 'p':
+                    result = computerChoice === 1 ? "tie" : computerChoice === 2 ? "lose" : "win";
+                    break;
+                case 's':
+                    result = computerChoice === 2 ? "tie" : computerChoice === 0 ? "lose" : "win";
+                    break;
+                default:
+                    alert("Invalid choice! Please enter 'r', 'p', or 's'.");
+                    i--; // Decrement i to repeat this round
+                    continue; // Skip to the next iteration of the loop
+            }
+
+            if (result === "win") {
+                wins++;
+                alert("You win!");
+            } else if (result === "lose") {
+                losses++;
+                alert("You lose!");
+            } else {
+                ties++;
+                alert("It's a tie!");
+            }
+        }
+
+        alert(`Game over!\nWins: ${wins}\nTies: ${ties}\nLosses: ${losses}`);
+    </script>
+</body>
+</html>
